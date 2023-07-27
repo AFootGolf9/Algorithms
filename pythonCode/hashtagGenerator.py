@@ -1,4 +1,5 @@
-if s == "" :return False
+def generate_hashtag(s):
+    if s == "" :return False
     char = 1
     out = "#"
     captal = True
