@@ -1,71 +1,129 @@
 
 
+import random
+
+
 def interpret(code):
     output = ""
     stack = []
     x=0
     y=0
+    difX = 1
+    difY = 0
 
     while(code[x][y] != '@'):
         match(code[x][y]):
-            case "":
+            case '':
                 break
-            case "+":
+            case '+':
                 stack.append(int(stack.pop()) + int(stack.pop()))
                 break
-            case "-":
+            case '-':
                 stack.append(int(stack.pop()) - int(stack.pop()))
                 break
-            case "*":
+            case '*':
                 stack.append(int(stack.pop()) * int(stack.pop()))
                 break
-            case "/":
+            case '/':
                 stack.append(int(stack.pop()) / int(stack.pop()))
                 break
-            case "%":
+            case '%':
                 x = stack.pop()
                 y = stack.pop()
-                if x == "0":
-                    stack.append("0")
+                if x == '0':
+                    stack.append('0')
                 else:
                  stack.append(y%x)
                 break
-            case "!":
+            case '!':
+                if stack.pop == '0':
+                    stack.append('1')
+                else:
+                    stack.append('0')
                 break
-            case "`":
+            case '`':
+                if stack.pop() < stack.pop():
+                    stack.append('1')
+                else:
+                    stack.append('0')
                 break
-            case ">":
+            case '>':
+                difX = 1
+                dify = 0
                 break
-            case "<":
+            case '<':
+                difX = -1
+                dify = 0
                 break
-            case "^":
+            case '^':
+                difX = 0
+                dify = -1
                 break
-            case "v":
+            case 'v':
+                difX = 0
+                dify = 1
                 break
-            case "?":
+            case '?':
+                match(random.randrange(0,4)):
+                    case 0:
+                        difX = 1
+                        dify = 0
+                        break
+                    case 1:
+                        difX = -1
+                        dify = 0
+                        break
+                    case 2:
+                        difX = 0
+                        dify = -1
+                        break
+                    case 3:
+                        difX = 0
+                        dify = 1
+                        break
                 break
-            case "_":
+            case '_':
+                if stack.pop() == '0':
+                    difx = 1
+                    dify = 0
+                else:
+                    difx = -1
+                    dify = 0
                 break
-            case "|":
+            case '|':
+                if stack.pop() == '0':
+                    dify = 1
+                    difx = 0
+                else:
+                    dify = -1
+                    difx = 0
                 break
-            case "\"":
+            case '\"':
+                stringMode = True
                 break
-            case ":":
+            case ':':
+                x = stack.pop()
+                stack.append(x)
+                stack.append(x)
                 break
-            case "\\":
+            case '\\':
+                
                 break
-            case "$":
+            case '$':
                 break
-            case ".":
+            case '.':
                 break
-            case ",":
+            case ',':
                 break
-            case "#":
+            case '#':
                 break
-            case "p":
+            case 'p':
                 break
-            case "g":
+            case 'g':
                 break
+        
+        x += difX
+        y += difY
 
     # TODO: Interpret the code!
     return output
