@@ -152,3 +152,6 @@ def interpret(code):
 
     # TODO: Interpret the code!
     return output
+
+
+print(interpret(">987v>.v\nv456<  :\n>321 ^ _@"))
