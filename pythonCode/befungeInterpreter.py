@@ -28,12 +28,12 @@ def interpret(code):
                 stack.append(int(stack.pop()) / int(stack.pop()))
                 break
             case '%':
-                x = stack.pop()
-                y = stack.pop()
+                a = stack.pop()
+                b = stack.pop()
                 if x == '0':
                     stack.append('0')
                 else:
-                 stack.append(y%x)
+                 stack.append(b%a)
                 break
             case '!':
                 if stack.pop == '0':
@@ -102,12 +102,25 @@ def interpret(code):
                 stringMode = True
                 break
             case ':':
-                x = stack.pop()
-                stack.append(x)
-                stack.append(x)
+                a = stack.pop()
+                stack.append(a)
+                stack.append(a)
                 break
             case '\\':
-                
+                match(stack.length()):
+                    case 1:
+
+                        a = stack.append('0')
+                        break
+                    case 0:
+                        stack.append('0')
+                        stack.append('0')
+                        break
+                    case _:
+                        a = stack.pop()
+                        b = stack.pop()
+                        stack.append(a)
+                        stack.append(b)
                 break
             case '$':
                 break
