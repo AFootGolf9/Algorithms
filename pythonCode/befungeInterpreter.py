@@ -18,8 +18,9 @@ def interpret(code):
     while(code[x][y] != '@'):
         if stringMode:
             if code[x][y] == '\"':
-                stringMode == False
-            stack.append(int(code[x][y]))
+                stringMode = False
+            else:
+                stack.append(ord(code[x][y]))
         else:
             match code[x][y]:
                 case ' ':
@@ -113,9 +114,9 @@ def interpret(code):
                 case '$':
                     stack.pop()
                 case '.':
-                    output += stack.pop()
+                    output += str(stack.pop())
                 case ',':
-                    output += ord(stack.pop())
+                    output += chr(stack.pop())
                 case '#':
                     x += difX
                     y += difY
@@ -128,10 +129,12 @@ def interpret(code):
                     b = stack.pop()
                     stack.append(code[b][a])
                 case _:
-                    stack.append(code[x][y])
+                    stack.append(int(code[x][y]))
         
         x += difX
         y += difY
 
     # TODO: Interpret the code!
     return output
+
+print(interpret(">\"aaa\",,,@"))
