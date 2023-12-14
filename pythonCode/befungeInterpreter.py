@@ -26,30 +26,32 @@ def interpret(code):
                 case ' ':
                     nothing = 0
                 case '+':
-                    stack.append(stack.pop() + stack.pop())
+                    stack.append(int(stack.pop()) + int(stack.pop()))
                 case '-':
-                    stack.append(stack.pop() - stack.pop())
+                    a = stack.pop()
+                    stack.append(int(stack.pop()) - int(a))
                 case '*':
-                    stack.append(stack.pop() * stack.pop())
+                    stack.append(int(stack.pop()) * int(stack.pop()))
                 case '/':
-                    stack.append(stack.pop() / stack.pop())
+                    a = stack.pop()
+                    stack.append(int(stack.pop()) / int(a))
                 case '%':
                     a = stack.pop()
                     b = stack.pop()
-                    if x == 0:
+                    if a == '0':
                         stack.append(0)
                     else:
-                        stack.append(b%a)
+                        stack.append(int(b)%int(a))
                 case '!':
-                    if stack.pop == 0:
-                        stack.append(1)
+                    if stack.pop == '0':
+                        stack.append('1')
                     else:
-                        stack.append(0)
+                        stack.append('0')
                 case '`':
                     if stack.pop() < stack.pop():
-                        stack.append(1)
+                        stack.append('1')
                     else:
-                        stack.append(0)
+                        stack.append('0')
                 case '>':
                     difY = 1
                     difX = 0
@@ -77,14 +79,14 @@ def interpret(code):
                             difY = 0
                             difX = 1
                 case '_':
-                    if stack.pop() == 0:
+                    if stack.pop() == '0':
                         difY = 1
                         difX = 0
                     else:
                         difY = -1
                         difX = 0
                 case '|':
-                    if stack.pop() == 0:
+                    if stack.pop() == '0':
                         difX = 1
                         difY = 0
                     else:
@@ -93,8 +95,8 @@ def interpret(code):
                 case '\"':
                     stringMode = True
                 case ':':
-                    if len(stack )== 0:
-                        stack.append(0)
+                    if len(stack) == 0:
+                        stack.append('0')
                     else:
                         a = stack.pop()
                         stack.append(a)
@@ -102,10 +104,10 @@ def interpret(code):
                 case '\\':
                     match len(stack):
                         case 1:
-                            stack.append(0)
+                            stack.append('0')
                         case 0:
-                            stack.append(0)
-                            stack.append(0)
+                            stack.append('0')
+                            stack.append('0')
                         case _:
                             a = stack.pop()
                             b = stack.pop()
@@ -114,22 +116,22 @@ def interpret(code):
                 case '$':
                     stack.pop()
                 case '.':
-                    output += str(stack.pop())
+                    output += stack.pop()
                 case ',':
-                    output += chr(stack.pop())
+                    output += chr(int(stack.pop()))
                 case '#':
                     x += difX
                     y += difY
                 case 'p':
-                    a = stack.pop()
-                    b = stack.pop()
+                    a = int(stack.pop())
+                    b = int(stack.pop())
                     code[b][a] = stack.pop()
                 case 'g':
-                    a = stack.pop()
-                    b = stack.pop()
-                    stack.append(code[b][a])
+                    a = int(stack.pop())
+                    b = int(stack.pop())
+                    stack.append(code[a][b])
                 case _:
-                    stack.append(int(code[x][y]))
+                    stack.append(code[x][y])
         
         x += difX
         y += difY
@@ -137,4 +139,4 @@ def interpret(code):
     # TODO: Interpret the code!
     return output
 
-print(interpret(">\"aaa\",,,@"))
+print(interpret("01->1# +# :# 0# g# ,# :# 5# 8# *# 4# +# -# _@"))
