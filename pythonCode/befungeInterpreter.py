@@ -1,7 +1,4 @@
-
-
 import random
-
 
 def interpret(code):
     output = ""
@@ -15,7 +12,6 @@ def interpret(code):
     code = code.split('\n')
     for i in range(0,len(code)):
         code[i] = [*code[i]]
-
 
     while(code[x][y] != '@'):
         if stringMode:
@@ -138,9 +134,4 @@ def interpret(code):
         x += difX
         y += difY
 
-    # TODO: Interpret the code!
     return output
-
-#print(interpret("08>:1-:v v *_$.@\n  ^    _$>\:^"))
-#print(interpret("01->1# +# :# 0# g# ,# :# 5# 8# *# 4# +# -# _@"))
-print(interpret("2>:3g\" \"-!v\  g30          <\n |!`\"&\":+1_:.:03p>03g+:\"&\"`|\n @               ^  p3\\\" \":<\n2 2345678901234567890123456789012345678"))
