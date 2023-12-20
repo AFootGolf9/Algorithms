@@ -16,6 +16,7 @@ def interpret(code):
     for i in range(0,len(code)):
         code[i] = [*code[i]]
 
+
     while(code[x][y] != '@'):
         if stringMode:
             if code[x][y] == '\"':
@@ -44,7 +45,7 @@ def interpret(code):
                     else:
                         stack.append(b%a)
                 case '!':
-                    if stack.pop == 0:
+                    if stack.pop() == 0:
                         stack.append(1)
                     else:
                         stack.append(0)
@@ -126,7 +127,7 @@ def interpret(code):
                 case 'p':
                     a = stack.pop()
                     b = stack.pop()
-                    code[b][a] = stack.pop()
+                    code[a][b] = chr(stack.pop())
                 case 'g':
                     a = stack.pop()
                     b = stack.pop()
