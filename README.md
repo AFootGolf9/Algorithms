@@ -1,3 +1,3 @@
-# myCodewarsKataSolutions
+# Algorithms
 
-diretory that contains simple codes that I have made to train and learn.
+some Alforithms
