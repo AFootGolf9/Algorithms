@@ -1,3 +1,3 @@
 # Algorithms
 
-some Alforithms
+some Algorithms
