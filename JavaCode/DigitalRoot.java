@@ -1,4 +1,4 @@
-public class DRoot {
+public class DigitalRoot {
   public static int digital_root(int output) {
     String hold = String.valueOf(output);
         while(output > 9){

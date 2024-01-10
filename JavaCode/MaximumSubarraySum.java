@@ -1,4 +1,4 @@
-public class Max {
+public class MaximumSubarraySum {
   public static int sequence(int[] arr) {
     int maxSum = 0, posSum = 0, negSum = 0;
 		
