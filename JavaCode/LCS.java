@@ -16,12 +16,18 @@ public class LCS {
         for(int i = 0; i < smlStr.length(); i++){
             for(int j = 0; j < bigStr.length(); j++){
                 if (smlStr.charAt(i) == bigStr.charAt(j)){
-                    holdEqual[j] = bigStr.charAt(j);
+                    if(holdEqual[j] != bigStr.charAt(j)){
+                        holdEqual[j] = bigStr.charAt(j);
+                        for(int k = j+1; k < bigStr.length(); k++){
+                            holdEqual[k] = '\u0000';
+                        }
+                        break;
+                    }
                 }
             }
         }
         for(int i = 0; i < holdEqual.length; i++){
-            if(holdEqual[i] != ' '){
+            if(holdEqual[i] != '\u0000'){
                 out += holdEqual[i];
             }
         }
@@ -30,6 +36,6 @@ public class LCS {
 
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
-        System.out.println(lcs(scan.nextLine(), scan.nextLine()));;
+        System.out.println(lcs("finaltest", "zzzfinallyzzz"));;
     }
 }
