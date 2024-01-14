@@ -1,5 +1,3 @@
-import java.util.Scanner;
-
 public class LCS {
     public static String lcs(String x, String y) {
         String out  = "";
@@ -32,10 +30,5 @@ public class LCS {
             }
         }
         return out;
-    }
-
-    public static void main(String[] args) {
-        Scanner scan = new Scanner(System.in);
-        System.out.println(lcs("finaltest", "zzzfinallyzzz"));;
     }
 }
